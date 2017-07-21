@@ -4,7 +4,7 @@ $(document).ready(function(){
         $('.add_vowel').hide();
         $('.add_consonant').hide();
         $('#add_word').toggle();
-        var end = new Date().getTime() + 30000;
+        var end = new Date().getTime() + 10000;
         var x = setInterval(function(){
             var now = new Date().getTime();
             var distance = end - now;
@@ -15,6 +15,23 @@ $(document).ready(function(){
                 $('.letters_available').off();
                 $('body').off('keypress');
                 $('.words_submitted').prepend('<h3>Choose your best word</h3>');
+                $('.submitted_word').click(function(){
+                    var best_word = $(this).text();
+                    $.ajax({ //If this weren't a free, harmless Webster's dictionary API, I'd be more secure with the key
+                        url: 'http://www.dictionaryapi.com/api/v1/references/collegiate/xml/'+best_word+'?key=a5d56432-f973-42ac-bb09-76d4a22cc31d',
+                        dataType: "xml",
+                        success: function(result, status, jqXHR){
+                            var definitions = $(result).find("entry").length;
+                            if(definitions > 0){
+                                console.log('ITS A WORD ALRIGHT')
+                            } else {
+                                console.log('AINT NO WORD I EVER HEARD OF')
+                            }
+
+                        }
+                    })
+                    $('.submitted_word').off();
+                })
                 return $('.letters_chosen').off();
             }
             $('.seconds_left').text(seconds);
@@ -70,8 +87,6 @@ $(document).ready(function(){
             chosen_letters.splice(chosen_letters.indexOf(char), 1);
             $('.letters_available').append("<button class='available_letter "+char+"'>" + char + "</button>");
             $(this).remove();
-            console.log(chosen_letters)
-            console.log(available_letters)
         })
         if(word.length>0){
             $('.words_submitted').append("<button class='submitted_word'>" + word + "</button>")
