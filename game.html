@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Countdown Letters Challenge</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="letters_jquery.js"></script>
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/skeleton.css">
+        <link rel="stylesheet" href="css/countdown.css">
+    </head>
+    <body>
+        <div class="container">
+            <h1>Countdown letters challenge</h1>
+            <div class="row">
+                <button type="button" class="add_vowel add_letter four columns offset-by-two">Add a vowel</button>
+                <button type="button" class="add_consonant add_letter four columns">Add a consonant</button>
+                <button type="button" class="start_game">Start the game!</button>
+            </div>
+            <div class="row timer">
+                <h4 class="timer"><span class="seconds_left">30</span> seconds remaining</h4>
+            </div>
+            <div class="row letters_available">
+            </div>
+            <div class="row letter_divider">
+            </div>
+            <div class="row letters_chosen">
+            </div>
+            <button type="button" name="add_word" id="add_word">Complete Word</button>
+            <div class="words_submitted">
+            </div>
+            <div class="row">
+                <div class="six columns instructions">
+                    <h5>Instructions</h5>
+                    <p>Add consonants and vowels to choose 9 letters</p>
+                    <p>Spell the longest word you can using those 9 letters in 30 seconds</p>
+                    <p>The timer will start as soon as the ninth letter is picked</p>
+                    <p>You can submit any amount of words, then choose your best</p>
+                </div>
+                <div class="six columns shortcuts">
+                    <h5>Keyboard Shortcuts</h5>
+                    <p>Type any available letter to add it to the word you're spelling</p>
+                    <p>Enter: Submit Word</p>
+                    <p>Delete: Delete the last letter of the word you're spelling</p>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

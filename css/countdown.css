@@ -1,0 +1,34 @@
+.available_letter, .chosen_letter {
+    display: inline;
+    font-size: 3em;
+    color: white;
+    background-color: blue;
+    width: 1.5em;
+    height: 1.5em;
+    text-align: center;
+    padding: 0px;
+}
+.shortcuts p, .instructions p {
+    margin: .1em;
+}
+.start_game {
+    display: none;
+}
+#add_word {
+    display: none;
+}
+.letters_available {
+    text-align: center;
+}
+.letter_divider {
+    border-top: .25em dashed black;
+    width: 80%;
+    margin: 1em auto;
+}
+.submitted_word {
+    display: inline;
+    margin: 1em 1em;
+}
+h1, h2, h3, h4, h5 {
+    text-align: center;
+}
