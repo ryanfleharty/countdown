@@ -32,3 +32,8 @@
 h1, h2, h3, h4, h5 {
     text-align: center;
 }
+.best_word {
+    font-size: 1.25em;
+    margin: 0px 1em;
+    display: inline;
+}
