@@ -16,7 +16,11 @@ app.get('/', function(req, res){
 })
 app.post('/best_word', function(req, res){
     var best_words = dictionary.rBestWord(req.body.letters);
-    res.json(best_words)
+    res.json(best_words);
+})
+app.post('/check_word', function(req, res){
+    var word_exists = dictionary.search(req.body.word);
+    res.json(word_exists);
 })
 app.listen(port, function(){
     console.log(`connected on port ${port}`);

@@ -17,6 +17,9 @@
 #add_word {
     display: none;
 }
+.add_word_row {
+    text-align: center;
+}
 .letters_available, .letters_chosen {
     text-align: center;
 }
@@ -37,9 +40,9 @@ h1, h2, h3, h4, h5 {
 }
 .best_word {
     font-size: 1.25em;
-    margin: 0px 1em;
-    display: inline;
+    text-align: center;
 }
-.best-words {
-    text-align:center;
+.best_words p {
+    text-align: center;
+    margin: .25em;
 }
