@@ -72,7 +72,7 @@ Trie.prototype.search = function(word) {
       next;
   for (var i = 0; i < word.length; i++) {
     next = this.childIndex(curr, word[i]);
-    if (next < 0) { return curr.isWord; }
+    if (next < 0) { return false; }
     curr = curr.children[next];
   }
   return curr.isWord;

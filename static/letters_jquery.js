@@ -2,6 +2,8 @@ $(document).ready(function(){
     var available_letters = [];
     var chosen_letters = [];
     var words_submitted = [];
+    var points_scored = 0;
+    var points_possible = 0;
     $('#add_word').click(function(){
         var word = ""
         $('.chosen_letter').each(function(index){
@@ -58,6 +60,7 @@ $(document).ready(function(){
     $('.add_consonant').on('click', {'array': consonants}, generate_letter);
 
     $('.start_game').click(function(){
+        $('.timer').show();
         $('.controls').hide();
         $('#add_word').toggle();
         $('.letters_available').on('click', 'button', function(){
@@ -101,9 +104,11 @@ $(document).ready(function(){
         var x = setInterval(function(){
             var now = new Date().getTime();
             var distance = end - now;
-            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-            if(distance <= 0) { //END GAME PROTOCOL
+            var seconds = Math.ceil((distance % (1000 * 60)) / 1000);
+            if(distance <= 1) { //END GAME PROTOCOL
                 clearInterval(x);
+                $('#add_word').click();
+                $('.timer').hide();
                 $('#add_word').hide();
                 $('.letters_available').off();
                 $('body').off('keypress');
@@ -114,13 +119,15 @@ $(document).ready(function(){
                     var best_word = $(this).text();
                     $.post('/check_word',
                         {'word':best_word},
-                        function(result, status, jqXHR){
+                        function(valid, status, jqXHR){
                             $('.words_submitted').append("<div class='row result'></div>")
-                            if(result){
+                            if(valid){
                                 $('.result').append("<h3>"+best_word+" is worth " + best_word.length + " points!")
+                                points_scored += best_word.length;
                             } else {
                                 $('.result').append("<h3>"+best_word+" may be a word in Scotland, but not here.")
                             }
+                            $('.points_scored').text(points_scored);
                             for (var i = 0; i < chosen_letters.length; i++) {
                                 available_letters.push(chosen_letters[i]);
                             }
@@ -134,8 +141,11 @@ $(document).ready(function(){
                                         }
                                         $('.best_words').append("<p class='best_word'>"+data[i]+"</p>")
                                     }
+                                    points_possible += data[0].length;
+                                    $('.points_possible').text(points_possible)
                             })
-                            $('.result').append("<button class='reset_game'>Start a new game!</button>")
+                            $('.result').append("<button class='reset_game'>Start a new game!</button>");
+                            $('.scoreboard').show();
                         }
                     )
                 })

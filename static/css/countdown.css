@@ -14,6 +14,9 @@
 .start_game {
     display: none;
 }
+.timer {
+    display: none;
+}
 #add_word {
     display: none;
 }
@@ -45,4 +48,7 @@ h1, h2, h3, h4, h5 {
 .best_words p {
     text-align: center;
     margin: .25em;
+}
+.scoreboard {
+    display:none;
 }
