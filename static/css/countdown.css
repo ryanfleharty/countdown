@@ -17,7 +17,7 @@
 #add_word {
     display: none;
 }
-.letters_available {
+.letters_available, .letters_chosen {
     text-align: center;
 }
 .letter_divider {
@@ -29,6 +29,9 @@
     display: inline;
     margin: 1em 1em;
 }
+.words_submitted {
+    text-align: center;
+}
 h1, h2, h3, h4, h5 {
     text-align: center;
 }
@@ -36,4 +39,7 @@ h1, h2, h3, h4, h5 {
     font-size: 1.25em;
     margin: 0px 1em;
     display: inline;
+}
+.best-words {
+    text-align:center;
 }

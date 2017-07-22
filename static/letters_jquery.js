@@ -39,33 +39,39 @@ $(document).ready(function(){
             $('.add_letter').off();
         }
     })
+    // letter distribution determined by https://en.wikipedia.org/wiki/Letter_frequency#Relative_frequencies_of_letters_in_the_English_language
+    var vowels = ['a','a','a','a','a','a','a','a',
+        'e','e','e','e','e','e','e','e','e','e','e','e',
+        'i','i','i','i','i','i','i',
+        'o','o','o','o','o','o','o',
+        'u','u','u','u'];
+    var consonants = ['b',
+        'c','c','c',
+        'd','d','d','d',
+        'f','f',
+        'g','g',
+        'h','h','h','h','h','h',
+        'j',
+        'k',
+        'l','l','l','l',
+        'm','m','m',
+        'n','n','n','n','n','n',
+        'p','p',
+        'q',
+        'r','r','r','r','r','r',
+        's','s','s','s','s','s','s',
+        't','t','t','t','t','t','t','t',
+        'v',
+        'w','w',
+        'x',
+        'y','y',
+        'z']
     $('.add_vowel').click(function(){
-        var vowels = ['a','e','i','o','u'];
-        var index = Math.floor(Math.random() * 5);
+        var index = Math.floor(Math.random() * vowels.length);
         $('.letters_available').append("<button class='available_letter "+vowels[index]+"'>" + vowels[index] + "</button>")
         available_letters.push(vowels[index]);
     })
     $('.add_consonant').click(function(){
-        var consonants = ['b',
-        'c','c',
-        'd','d','d','d',
-        'f',
-        'h','h',
-        'j',
-        'k','k',
-        'l','l','l',
-        'm','m','m',
-        'n','n','n',
-        'p','p',
-        'q',
-        'r','r','r','r',
-        's','s','s','s',
-        't','t','t','t',
-        'v',
-        'w','w',
-        'x',
-        'y',
-        'z']
         var index = Math.floor(Math.random() * consonants.length)
         $('.letters_available').append("<button class='available_letter "+consonants[index]+"'>" + consonants[index] + "</button>")
         available_letters.push(consonants[index]);
@@ -80,7 +86,7 @@ $(document).ready(function(){
             var now = new Date().getTime();
             var distance = end - now;
             var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-            if(distance <= 0) {
+            if(distance <= 0) { //END GAME PROTOCOL
                 clearInterval(x);
                 $('#add_word').hide();
                 $('.letters_available').off();
@@ -111,6 +117,9 @@ $(document).ready(function(){
                             $('.words_submitted').after("<div class='row best_words'><h5>Could you have done better?<h5><p>The best words were:</p></div>")
                             for (var i = 0; i < data.length; i++) {
                                 $('.best_words').append("<p class='best_word'>"+data[i]+"</p>")
+                                if(i>6){
+                                    break;
+                                }
                             }
                     })
                 })
